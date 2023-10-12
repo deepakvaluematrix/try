@@ -1,27 +1,22 @@
-name: Snyk Security Scan
-
-on:
-  push:
-    branches:
-      - main # Adjust this to your main branch
-
+name: Example workflow using Snyk
+on: push
 jobs:
-  snyk:
+  security:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
+      - name: Install Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 16
+          node-version: 18 # Use the version you need
 
       - name: Install Snyk CLI
         run: npm install -g snyk
 
-      - name: Run Snyk Security Scan
+      - name: Run Snyk to check for vulnerabilities
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
-        run: snyk test --all-projects
+        run: |
+          snyk test
