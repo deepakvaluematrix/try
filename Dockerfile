@@ -1,5 +1,5 @@
 
-FROM node:alpine
+FROM node:21.2-alpine3.18
 
 RUN addgroup --gid 3001 value-system
 RUN adduser -D -u 3002 -S value-user -G value-system -s /bin/false -g "npm user"
